@@ -1,15 +1,15 @@
+//version 3.10
 import javax.swing.*;
 import javax.swing.border.*;
 import java.awt.*;
-import java.awt.datatransfer.*;
-import java.awt.event.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.ActionEvent;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Standard Deviation Calculator (D3 F8)
- * UI principles applied: clarity, grouping, consistency, feedback, accessibility, error prevention.
- */
+
 public final class StdGui extends JFrame {
 
     // --- UI fields ------------------------------------------------------------
@@ -24,9 +24,9 @@ public final class StdGui extends JFrame {
     private final JTextArea stepsArea   = new JTextArea(12, 40);
 
     // Colors chosen for contrast (meets WCAG AA with default LAF)
-    private static final Color ACCENT = new Color(21, 101, 192);   // #1565C0
-    private static final Color OK     = new Color(46, 125, 50);    // green-ish
-    private static final Color ERR    = new Color(198, 40, 40);    // red-ish
+    private static final Color ACCENT = new Color(21, 101, 192);
+    private static final Color OK     = new Color(46, 125, 50);
+    private static final Color ERR    = new Color(198, 40, 40);
 
     public StdGui() {
         super("σ  Standard Deviation Calculator — D3 F8");
@@ -231,7 +231,6 @@ public final class StdGui extends JFrame {
         varLabel.getAccessibleContext().setAccessibleName("Variance result");
         stepsArea.getAccessibleContext().setAccessibleName("Calculation steps");
         stepsArea.getAccessibleContext().setAccessibleDescription("Detailed steps of the calculation.");
-        // Logical tab order is already good: input → calc/clear → results → copy → steps.
     }
 
     private void onCalculate(ActionEvent e) {
@@ -265,7 +264,6 @@ public final class StdGui extends JFrame {
         double[] xs = new double[values.size()];
         for (int i = 0; i < xs.length; i++) xs[i] = values.get(i);
 
-        // Compute (from-scratch friendly)
         double mean = Stats.mean(xs);
         double var  = Stats.variancePopulation(xs, mean);
         double std  = Stats.sqrt(var);
