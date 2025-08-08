@@ -60,8 +60,8 @@ Invalid input triggers inline and dialog errors—both screen-reader friendly.
 ├── src
 │   ├── main
 │   │   └── java
-│   │       ├── gui          # StdGUI.java (Swing front-end)
-│   │       └── core         # Statistics.java (logic)
+│   │       └── gui          # StdGUI.java (Swing front-end)
+│   │       
 │   └── test
 │       └── java             # StatisticsTest.java
 ├── build.gradle
