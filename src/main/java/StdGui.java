@@ -23,7 +23,7 @@ public final class StdGui extends JFrame {
     private final JLabel    varLabel    = new JLabel("—");
     private final JTextArea stepsArea   = new JTextArea(12, 40);
 
-    // Colors chosen for contrast (meets WCAG AA with default LAF)
+    // Colors chosen for contrast
     private static final Color ACCENT = new Color(21, 101, 192);
     private static final Color OK     = new Color(46, 125, 50);
     private static final Color ERR    = new Color(198, 40, 40);
@@ -39,8 +39,8 @@ public final class StdGui extends JFrame {
         wireActions();
         applyAccessibility();
 
-        // Keyboard shortcuts (discoverable)
-        getRootPane().setDefaultButton(calcBtn); // Enter triggers Calculate in focused context
+        // Keyboard shortcuts
+        getRootPane().setDefaultButton(calcBtn);
         registerAccelerators();
 
         pack();
@@ -353,13 +353,13 @@ public final class StdGui extends JFrame {
                 double d = x - mean;
                 s += d * d;
             }
-            return s / xs.length; // population variance
+            return s / xs.length;
         }
         // Newton–Raphson sqrt without using Math.sqrt
         static double sqrt(double v) {
             if (v < 0) throw new IllegalArgumentException("sqrt of negative");
             if (v == 0) return 0;
-            double x = v >= 1 ? v : 1.0;  // initial guess
+            double x = v >= 1 ? v : 1.0;
             for (int i = 0; i < 40; i++) {
                 x = 0.5 * (x + v / x);
             }
